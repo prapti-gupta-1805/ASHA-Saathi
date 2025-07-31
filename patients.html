@@ -161,7 +161,8 @@
             <h5>Past Checkup Records</h5>
             <p>No detailed past records available currently.</p>
 
-            <button class="btn btn-sm btn-primary">+ Add New Record</button>
+<button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); window.location.href='input.html?name=${encodeURIComponent(p.name)}'">+ Add New Record</button>
+
           </div>
         </td>
       `;
