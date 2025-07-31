@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Report - ASHA Saathi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 1rem;
+    }
+    .tab-content {
+      padding-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="card shadow">
+      <div class="card-body">
+        <h2 class="card-title mb-4 text-center text-primary">Add New Patient Report</h2>
+
+        <!-- Patient Name Input -->
+        <div class="mb-3">
+          <label for="patientName" class="form-label">Patient Name</label>
+          <input type="text" class="form-control" id="patientName" placeholder="Enter full name">
+        </div>
+
+        <!-- Input Tabs -->
+        <ul class="nav nav-tabs mb-3" id="inputTabs">
+          <li class="nav-item">
+            <a class="nav-link active" id="voice-tab" data-bs-toggle="tab" href="#voiceInput">Voice</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="image-tab" data-bs-toggle="tab" href="#imageInput">Image</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- Voice Input -->
+          <div class="tab-pane fade show active" id="voiceInput">
+            <div class="mb-3">
+              <label for="voiceInputArea" class="form-label">Voice Input</label>
+              <textarea class="form-control" id="voiceInputArea" rows="3" placeholder="Speak and it will appear here..."></textarea>
+            </div>
+            <button class="btn btn-outline-primary mb-3" onclick="startVoiceInput()">
+              <i class="bi bi-mic-fill me-2"></i>Start Recording
+            </button>
+          </div>
+
+          <!-- Image Input -->
+          <div class="tab-pane fade" id="imageInput">
+            <div class="mb-3">
+              <label for="imageUpload" class="form-label">Upload Image</label>
+              <input class="form-control" type="file" id="imageUpload" accept="image/*">
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="mb-3">
+          <label for="result" class="form-label">Result</label>
+          <textarea class="form-control" id="result" rows="4" placeholder="Processed result will appear here..."></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+          <a href="index.html" class="btn btn-secondary shadow-sm rounded-pill">
+            <i class="bi bi-arrow-left me-2"></i>Back to Home
+          </a>
+          <div>
+            <button type="button" class="btn btn-primary me-2" onclick="processInput()">
+              <i class="bi bi-cpu me-2"></i>Process & Analyze
+            </button>
+            <button type="button" class="btn btn-success" onclick="saveReport()">
+              <i class="bi bi-save me-2"></i>Save Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const patientsData = [];
+
+    function startVoiceInput() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.start();
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById("voiceInputArea").value = transcript;
+      };
+
+      recognition.onerror = (event) => {
+        alert("Voice recognition error: " + event.error);
+      };
+    }
+
+    function processInput() {
+      const activeTab = document.querySelector(".nav-link.active").id;
+      let content = "";
+
+      if (activeTab === "voice-tab") {
+        content = document.getElementById("voiceInputArea").value;
+      } else if (activeTab === "image-tab") {
+        const image = document.getElementById("imageUpload").files[0];
+        content = image ? "Image uploaded: " + image.name : "No image uploaded.";
+      }
+
+      document.getElementById("result").value = `Processed: ${content}`;
+    }
+
+    function saveReport() {
+      const name = document.getElementById("patientName").value.trim();
+      const result = document.getElementById("result").value;
+
+      if (!name || !result) {
+        alert("Please enter patient name and generate result before saving.");
+        return;
+      }
+
+      const patientIndex = patientsData.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+
+      if (patientIndex !== -1) {
+        patientsData[patientIndex].report = result;
+        alert("Existing patient report updated!");
+      } else {
+        const newPatient = {
+          name: name,
+          age: "",
+          village: "",
+          contact: "",
+          healthStatus: "",
+          chronicIllness: "",
+          pregnant: "",
+          lastCheckup: "",
+          bp: "",
+          sugar: "",
+          bmi: "",
+          risk: "",
+          substanceUse: "",
+          report: result
+        };
+
+        patientsData.push(newPatient);
+        alert("New patient report saved!");
+      }
+
+      console.log(patientsData);
+    }
+  </script>
+</body>
+</html>

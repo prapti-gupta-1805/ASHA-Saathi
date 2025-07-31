@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nivedini - Smart Health Assistant</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary" href="index.html">
+      <i class="bi bi-heart-pulse me-2"></i>Nivedini
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="patients.html">Patients</a></li>
+        <li class="nav-item"><a class="nav-link" href="input.html">New Report</a></li>
+        <li class="nav-item"><a class="nav-link" href="incentive.html">Incentive Tracker</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-translate me-1"></i>English
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">हिंदी</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hinglish')">Hinglish</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold text-dark mb-4">
+          Smart Health Assistant for <span class="text-primary">ASHA Workers</span>
+        </h1>
+        <p class="lead text-muted mb-4">
+          Empowering community health workers with AI-powered diagnosis assistance, patient management, and offline-first healthcare solutions.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <a href="input.html" class="btn btn-primary btn-lg px-4">
+            <i class="bi bi-stethoscope me-2"></i>Upload Report
+          </a>
+          <a href="patients.html" class="btn btn-outline-primary btn-lg px-4">
+            <i class="bi bi-people me-2"></i>View Records
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="hero-image">
+          <i class="bi bi-heart-pulse-fill text-primary" style="font-size: 12rem; opacity: 0.1;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

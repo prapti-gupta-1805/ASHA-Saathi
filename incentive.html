@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Incentive Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="index.html">
+        <i class="bi bi-heart-pulse me-2"></i>Nivedini
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="patients.html">Patients</a></li>
+          <li class="nav-item"><a class="nav-link" href="input.html">New Report</a></li>
+          <li class="nav-item"><a class="nav-link active" href="incentive.html">Incentive Tracker</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-translate me-1"></i>English
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">हिंदी</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hinglish')">Hinglish</a></li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <h2 class="mb-4 text-primary">Incentive Tracker</h2>
+
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered" id="incentiveTable">
+        <thead class="table-light">
+          <tr>
+            <th>Task</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Redeemed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Institutional Delivery Escort</td>
+            <td>₹600</td>
+            <td>4</td>
+            <td class="amount">₹2400</td>
+            <td><input type="checkbox" onchange="updateTotal()" /></td>
+          </tr>
+          <tr>
+            <td>Home-Based Newborn Care (HBNC)</td>
+            <td>₹250</td>
+            <td>6</td>
+            <td class="amount">₹1500</td>
+            <td><input type="checkbox" onchange="updateTotal()" /></td>
+          </tr>
+          <tr>
+            <td>Full Antenatal Checkups (ANC)</td>
+            <td>₹150</td>
+            <td>8</td>
+            <td class="amount">₹1200</td>
+            <td><input type="checkbox" onchange="updateTotal()" /></td>
+          </tr>
+          <tr>
+            <td>Immunization Session Support</td>
+            <td>₹100</td>
+            <td>10</td>
+            <td class="amount">₹1000</td>
+            <td><input type="checkbox" onchange="updateTotal()" /></td>
+          </tr>
+          <tr>
+            <td>Family Planning Referrals</td>
+            <td>₹250</td>
+            <td>3</td>
+            <td class="amount">₹750</td>
+            <td><input type="checkbox" onchange="updateTotal()" /></td>
+          </tr>
+          <tr>
+            <td>Immunization Session</td>
+            <td>₹500</td>
+            <td>3</td>
+            <td class="amount">₹1500</td>
+            <td><input type="checkbox" onchange="updateTotal()" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total Redeemed -->
+    <h5 class="mt-4">Total Redeemed: <span id="totalAmount">₹0</span></h5>
+
+    <!-- Add Incentive -->
+    <div class="mt-5">
+      <h4 class="mb-3">Add New Incentive</h4>
+      <form id="incentiveForm" onsubmit="addIncentive(); return false;">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <input type="text" id="task" class="form-control" placeholder="Task Name" required />
+          </div>
+          <div class="col-md-3">
+            <input type="number" id="rate" class="form-control" placeholder="Rate (₹)" required />
+          </div>
+          <div class="col-md-3">
+            <input type="number" id="quantity" class="form-control" placeholder="Quantity" required />
+          </div>
+          <div class="col-md-2 d-grid">
+            <button type="submit" class="btn btn-primary">Add Incentive</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function updateTotal() {
+      let total = 0;
+      const rows = document.querySelectorAll("#incentiveTable tbody tr");
+      rows.forEach(row => {
+        const checkbox = row.querySelector("input[type='checkbox']");
+        const amountCell = row.querySelector(".amount");
+        if (checkbox && checkbox.checked) {
+          const amount = parseInt(amountCell.textContent.replace("₹", "").trim());
+          total += amount;
+        }
+      });
+      document.getElementById("totalAmount").textContent = "₹" + total;
+    }
+
+    function addIncentive() {
+      const task = document.getElementById("task").value.trim();
+      const rate = parseInt(document.getElementById("rate").value);
+      const quantity = parseInt(document.getElementById("quantity").value);
+      const total = rate * quantity;
+
+      const tbody = document.querySelector("#incentiveTable tbody");
+      const newRow = document.createElement("tr");
+
+      newRow.innerHTML = `
+        <td>${task}</td>
+        <td>₹${rate}</td>
+        <td>${quantity}</td>
+        <td class="amount">₹${total}</td>
+        <td><input type="checkbox" onchange="updateTotal()"/></td>
+      `;
+
+      tbody.appendChild(newRow);
+      document.getElementById("incentiveForm").reset();
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

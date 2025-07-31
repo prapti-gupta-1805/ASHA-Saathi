@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patients</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary" href="index.html">
+      <i class="bi bi-heart-pulse me-2"></i>Nivedini
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="patients.html">Patients</a></li>
+        <li class="nav-item"><a class="nav-link" href="input.html">New Report</a></li>
+        <li class="nav-item"><a class="nav-link" href="incentive.html">Incentive Tracker</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+
+      <!-- Fixed Language Dropdown -->
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-translate me-1"></i>English
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">हिंदी</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hinglish')">Hinglish</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Content -->
+  <div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-primary">Patient Records</h2>
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addPatientModal">+ Add Patient</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Village</th>
+            <th>Contact</th>
+            <th>Health Status</th>
+            <th>Chronic Illness</th>
+            <th>Pregnant?</th>
+            <th>Last Checkup</th>
+            <th>BP</th>
+            <th>Sugar</th>
+            <th>BMI</th>
+            <th>Risk</th>
+            <th>Substance Use</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="patientTable">
+          <!-- Patient rows will be populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add Patient Modal -->
+  <div class="modal fade" id="addPatientModal" tabindex="-1" aria-labelledby="addPatientLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form id="addPatientForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addPatientLabel">Add Patient</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="patientName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="patientName" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientAge" class="form-label">Age</label>
+                <input type="number" class="form-control" id="patientAge" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientVillage" class="form-label">Village</label>
+                <input type="text" class="form-control" id="patientVillage" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientContact" class="form-label">Contact</label>
+                <input type="tel" class="form-control" id="patientContact" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientStatus" class="form-label">Health Status</label>
+                <input type="text" class="form-control" id="patientStatus" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientChronic" class="form-label">Chronic Illness</label>
+                <input type="text" class="form-control" id="patientChronic">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientPregnant" class="form-label">Pregnant? (Yes/No)</label>
+                <input type="text" class="form-control" id="patientPregnant">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientCheckup" class="form-label">Last Checkup Date</label>
+                <input type="date" class="form-control" id="patientCheckup">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientBP" class="form-label">Blood Pressure</label>
+                <input type="text" class="form-control" id="patientBP">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientSugar" class="form-label">Sugar Level</label>
+                <input type="text" class="form-control" id="patientSugar">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientBMI" class="form-label">BMI</label>
+                <input type="number" step="0.1" class="form-control" id="patientBMI">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="patientRisk" class="form-label">Risk Level</label>
+                <select class="form-select" id="patientRisk">
+                  <option>Low</option>
+                  <option>Moderate</option>
+                  <option>High</option>
+                </select>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="patientSubstance" class="form-label">Substance Use</label>
+                <input type="text" class="form-control" id="patientSubstance" placeholder="e.g., None, Tobacco, Alcohol">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add Patient</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const patients = [
+      { name: "Rekha Devi", age: 32, village: "Rampur", contact: "9876543210", status: "Pregnant", chronic: "None", pregnant: "Yes", lastCheckup: "2025-07-25", bp: "120/80", sugar: "Normal", bmi: 22.4, risk: "Low", substance: "No" },
+      { name: "Meena Kumari", age: 27, village: "Lalpur", contact: "9898989898", status: "Postnatal", chronic: "Anemia", pregnant: "No", lastCheckup: "2025-07-20", bp: "110/70", sugar: "Low", bmi: 18.6, risk: "Moderate", substance: "No" },
+      { name: "Sarla Ben", age: 45, village: "Bhuj", contact: "9123456780", status: "Regular Checkup", chronic: "Diabetes", pregnant: "No", lastCheckup: "2025-07-15", bp: "140/90", sugar: "High", bmi: 28.1, risk: "High", substance: "Tobacco" },
+      { name: "Kamla Devi", age: 38, village: "Rampur", contact: "9845612378", status: "Pregnant", chronic: "Hypertension", pregnant: "Yes", lastCheckup: "2025-07-10", bp: "135/85", sugar: "Normal", bmi: 25.0, risk: "Moderate", substance: "No" },
+      { name: "Lata Singh", age: 52, village: "Lalpur", contact: "9812312345", status: "Chronic", chronic: "Asthma", pregnant: "No", lastCheckup: "2025-06-30", bp: "130/85", sugar: "Normal", bmi: 24.5, risk: "Moderate", substance: "No" },
+      { name: "Geeta Bai", age: 29, village: "Bhuj", contact: "9123411111", status: "Pregnant", chronic: "None", pregnant: "Yes", lastCheckup: "2025-07-28", bp: "118/78", sugar: "Normal", bmi: 21.7, risk: "Low", substance: "No" },
+      { name: "Asha Patel", age: 60, village: "Rampur", contact: "9111222233", status: "Senior", chronic: "Hypertension", pregnant: "No", lastCheckup: "2025-07-01", bp: "150/95", sugar: "High", bmi: 30.2, risk: "High", substance: "Tobacco" },
+      { name: "Suman Verma", age: 33, village: "Lalpur", contact: "9876543211", status: "Pregnant", chronic: "Thyroid", pregnant: "Yes", lastCheckup: "2025-07-22", bp: "125/82", sugar: "Normal", bmi: 23.5, risk: "Moderate", substance: "No" },
+      { name: "Rita Das", age: 40, village: "Bhuj", contact: "9988776655", status: "Checkup", chronic: "None", pregnant: "No", lastCheckup: "2025-07-18", bp: "120/80", sugar: "Normal", bmi: 26.0, risk: "Low", substance: "Alcohol" },
+      { name: "Maya Devi", age: 35, village: "Rampur", contact: "9784561230", status: "Pregnant", chronic: "Anemia", pregnant: "Yes", lastCheckup: "2025-07-12", bp: "115/75", sugar: "Low", bmi: 19.8, risk: "Moderate", substance: "No" }
+    ];
+    function renderTable() {
+      const tbody = document.getElementById("patientTable");
+      tbody.innerHTML = "";
+
+      patients.forEach((p, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${p.name}</td>
+          <td>${p.age}</td>
+          <td>${p.village}</td>
+          <td>${p.contact}</td>
+          <td>${p.status}</td>
+          <td>${p.chronic}</td>
+          <td>${p.pregnant}</td>
+          <td>${p.lastCheckup}</td>
+          <td>${p.bp}</td>
+          <td>${p.sugar}</td>
+          <td>${p.bmi}</td>
+          <td>${p.risk}</td>
+          <td>${p.substance}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deletePatient(${index})">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function deletePatient(index) {
+      patients.splice(index, 1);
+      renderTable();
+    }
+
+    document.getElementById("addPatientForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("patientName").value.trim();
+      const age = parseInt(document.getElementById("patientAge").value);
+      const village = document.getElementById("patientVillage").value.trim();
+      const contact = document.getElementById("patientContact").value.trim();
+      const status = document.getElementById("patientStatus").value.trim();
+      const chronic = document.getElementById("patientChronic").value.trim();
+      const pregnant = document.getElementById("patientPregnant").value.trim();
+      const lastCheckup = document.getElementById("patientCheckup").value;
+      const bp = document.getElementById("patientBP").value.trim();
+      const sugar = document.getElementById("patientSugar").value.trim();
+      const bmi = parseFloat(document.getElementById("patientBMI").value);
+      const risk = document.getElementById("patientRisk").value;
+      const substance = document.getElementById("patientSubstance").value.trim();
+
+      if (!name || isNaN(age) || !village || !contact || !status) return;
+
+      patients.push({ name, age, village, contact, status, chronic, pregnant, lastCheckup, bp, sugar, bmi, risk, substance });
+      renderTable();
+
+      document.getElementById("addPatientForm").reset();
+      const modal = bootstrap.Modal.getInstance(document.getElementById("addPatientModal"));
+      modal.hide();
+    });
+
+    function changeLanguage(lang) {
+      alert(`Language switch not implemented. You selected: ${lang}`);
+    }
+
+    renderTable();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
