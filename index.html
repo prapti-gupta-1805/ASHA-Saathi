@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nivedini - Smart Health Assistant</title>
+  <title data-i18n="Nivedini - Smart Health Assistant">Nivedini - Smart Health Assistant</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="styles.css" rel="stylesheet" />
   <script src="https://unpkg.com/i18next@21.6.16/i18next.min.js"></script>
-<script src="/lang.js"></script>
+  <script src="/lang.js"></script>
 </head>
 <body>
 
@@ -16,36 +16,30 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold text-primary" href="index.html">
-      <i class="bi bi-heart-pulse me-2"></i>Nivedini
+      <i class="bi bi-heart-pulse me-2"></i><span data-i18n="Nivedini">Nivedini</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="patients.html">Patients</a></li>
-        <li class="nav-item"><a class="nav-link" href="incentive.html">Incentive Tracker</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n="Home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="patients.html" data-i18n="Patients">Patients</a></li>
+        <li class="nav-item"><a class="nav-link" href="incentive.html" data-i18n="Incentive Tracker">Incentive Tracker</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="About">About</a></li>
       </ul>
       <div class="dropdown">
-  <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
-    <i class="bi bi-translate me-1"></i>Languages
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('bn')">Bengali</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('gu')">Gujarati</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">हिंदी</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('kn')">Kannada</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('ml')">Malayalam</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('mr')">Marathi</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('or')">Odia</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('pa')">Punjabi</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('ta')">Tamil</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('te')">Telugu</a></li>
-  </ul>
-</div>
+        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-translate me-1"></i><span data-i18n="Languages">Languages</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')" data-i18n="English">English</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')" data-i18n="Hindi">Hindi</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('bn')" data-i18n="Bengali">Bengali</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('gu')" data-i18n="Gujarati">Gujarati</a></li>
+          <li><a class="dropdown-item" href="#" onclick="changeLanguage('mr')" data-i18n="Marathi">Marathi</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
@@ -56,17 +50,18 @@
     <div class="row align-items-center min-vh-75">
       <div class="col-lg-6">
         <h1 class="display-4 fw-bold text-dark mb-4">
-          Smart Health Assistant for <span class="text-primary">ASHA Workers</span>
+          <span data-i18n="Smart Health Assistant for">Smart Health Assistant for</span> 
+          <span class="text-primary" data-i18n="ASHA Workers">ASHA Workers</span>
         </h1>
-        <p class="lead text-muted mb-4">
+        <p class="lead text-muted mb-4" data-i18n="Empowering community health workers with AI-powered diagnosis assistance, patient management, and offline-first healthcare solutions.">
           Empowering community health workers with AI-powered diagnosis assistance, patient management, and offline-first healthcare solutions.
         </p>
         <div class="d-flex flex-column flex-sm-row gap-3">
           <a href="input.html" class="btn btn-primary btn-lg px-4">
-            <i class="bi bi-stethoscope me-2"></i>Upload Report
+            <i class="bi bi-stethoscope me-2"></i><span data-i18n="Upload Report">Upload Report</span>
           </a>
           <a href="patients.html" class="btn btn-outline-primary btn-lg px-4">
-            <i class="bi bi-people me-2"></i>View Records
+            <i class="bi bi-people me-2"></i><span data-i18n="View Records">View Records</span>
           </a>
         </div>
       </div>

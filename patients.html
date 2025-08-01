@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Patients</title>
+  <title data-i18n="Patients">Patients</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet"/>
   <link href="styles.css" rel="stylesheet" />
   <style>
-    /* Make rows look clickable */
     .patient-row {
       cursor: pointer;
     }
-    /* Expand icon rotation */
     .expand-icon {
       transition: transform 0.3s ease;
     }
@@ -21,7 +19,7 @@
     }
   </style>
   <script src="https://unpkg.com/i18next@21.6.16/i18next.min.js"></script>
-<script src="/lang.js"></script>
+  <script src="/lang.js"></script>
 </head>
 <body>
 
@@ -29,7 +27,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold text-primary" href="index.html">
-        <i class="bi bi-heart-pulse me-2"></i>Nivedini
+        <i class="bi bi-heart-pulse me-2"></i><span data-i18n="Nivedini">Nivedini</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -37,39 +35,19 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="patients.html">Patients</a></li>
-          <li class="nav-item"><a class="nav-link" href="incentive.html">Incentive Tracker</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="Home">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="patients.html" data-i18n="Patients">Patients</a></li>
+          <li class="nav-item"><a class="nav-link" href="incentive.html" data-i18n="Incentive Tracker">Incentive Tracker</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="About">About</a></li>
         </ul>
-
-        <div class="dropdown">
-  <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">
-    <i class="bi bi-translate me-1"></i>Languages
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('bn')">Bengali</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('gu')">Gujarati</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">हिंदी</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('kn')">Kannada</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('ml')">Malayalam</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('mr')">Marathi</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('or')">Odia</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('pa')">Punjabi</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('ta')">Tamil</a></li>
-    <li><a class="dropdown-item" href="#" onclick="changeLanguage('te')">Telugu</a></li>
-  </ul>
-</div>
-
       </div>
     </div>
   </nav>
 
   <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="text-primary">Patient Records</h2>
-      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addPatientModal">+ Add Patient</button>
+      <h2 class="text-primary" data-i18n="Patient Records">Patient Records</h2>
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addPatientModal" data-i18n="+ Add Patient">+ Add Patient</button>
     </div>
 
     <div class="table-responsive">
@@ -77,9 +55,9 @@
         <thead class="table-light">
           <tr>
             <th></th>
-            <th>Name</th>
-            <th>Last Checkup</th>
-            <th>Actions</th>
+            <th data-i18n="Name">Name</th>
+            <th data-i18n="Last Checkup">Last Checkup</th>
+            <th data-i18n="Actions">Actions</th>
           </tr>
         </thead>
         <tbody id="patientTable">
@@ -89,83 +67,79 @@
     </div>
   </div>
 
-  <!-- Add Patient Modal (keep your existing modal here) -->
   <div class="modal fade" id="addPatientModal" tabindex="-1" aria-labelledby="addPatientLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <form id="addPatientForm">
           <div class="modal-header">
-            <h5 class="modal-title" id="addPatientLabel">Add Patient</h5>
+            <h5 class="modal-title" id="addPatientLabel" data-i18n="Add Patient">Add Patient</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-<div class="modal-body">
-  <div class="row g-3">
-    <div class="col-md-6">
-      <label class="form-label">Name</label>
-      <input type="text" class="form-control" name="name" required />
-    </div>
-    <div class="col-md-3">
-      <label class="form-label">Age</label>
-      <input type="number" class="form-control" name="age" required />
-    </div>
-    <div class="col-md-3">
-      <label class="form-label">Village</label>
-      <input type="text" class="form-control" name="village" required />
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Contact</label>
-      <input type="tel" class="form-control" name="contact" required />
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Health Status</label>
-      <input type="text" class="form-control" name="status" required />
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Chronic Illness</label>
-      <input type="text" class="form-control" name="chronic" />
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Pregnant?</label>
-      <select class="form-select" name="pregnant">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </div>
-    <div class="col-md-4">
-      <label class="form-label">Last Checkup</label>
-      <input type="date" class="form-control" name="lastCheckup" required />
-    </div>
-    <div class="col-md-4">
-      <label class="form-label">BP</label>
-      <input type="text" class="form-control" name="bp" />
-    </div>
-    <div class="col-md-4">
-      <label class="form-label">Sugar</label>
-      <input type="text" class="form-control" name="sugar" />
-    </div>
-    <div class="col-md-4">
-      <label class="form-label">BMI</label>
-      <input type="number" step="0.1" class="form-control" name="bmi" />
-    </div>
-    <div class="col-md-4">
-      <label class="form-label">Risk Level</label>
-      <select class="form-select" name="risk">
-        <option>Low</option>
-        <option>Moderate</option>
-        <option>High</option>
-      </select>
-    </div>
-    <div class="col-md-4">
-      <label class="form-label">Substance Use</label>
-      <input type="text" class="form-control" name="substance" />
-    </div>
-  </div>
-</div>
-
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" data-i18n="Name">Name</label>
+                <input type="text" class="form-control" name="name" required />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" data-i18n="Age">Age</label>
+                <input type="number" class="form-control" name="age" required />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" data-i18n="Village">Village</label>
+                <input type="text" class="form-control" name="village" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" data-i18n="Contact">Contact</label>
+                <input type="tel" class="form-control" name="contact" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" data-i18n="Health Status">Health Status</label>
+                <input type="text" class="form-control" name="status" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" data-i18n="Chronic Illness">Chronic Illness</label>
+                <input type="text" class="form-control" name="chronic" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" data-i18n="Pregnant?">Pregnant?</label>
+                <select class="form-select" name="pregnant">
+                  <option value="Yes" data-i18n="Yes">Yes</option>
+                  <option value="No" data-i18n="No">No</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" data-i18n="Last Checkup">Last Checkup</label>
+                <input type="date" class="form-control" name="lastCheckup" required />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" data-i18n="BP">BP</label>
+                <input type="text" class="form-control" name="bp" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" data-i18n="Sugar">Sugar</label>
+                <input type="text" class="form-control" name="sugar" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" data-i18n="BMI">BMI</label>
+                <input type="number" step="0.1" class="form-control" name="bmi" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" data-i18n="Risk Level">Risk Level</label>
+                <select class="form-select" name="risk">
+                  <option data-i18n="Low">Low</option>
+                  <option data-i18n="Moderate">Moderate</option>
+                  <option data-i18n="High">High</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" data-i18n="Substance Use">Substance Use</label>
+                <input type="text" class="form-control" name="substance" />
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Add Patient</button>
+            <button type="submit" class="btn btn-primary" data-i18n="Add Patient">Add Patient</button>
           </div>
         </form>
       </div>
@@ -213,29 +187,28 @@
 
       trDetail.innerHTML = `
         <td colspan="4">
-          <div class="p-3 bg-light rounded">
-            <h5>General Information</h5>
-            <ul class="list-unstyled mb-3">
-              <li><strong>Age:</strong> ${p.age}</li>
-              <li><strong>Village:</strong> ${p.village}</li>
-              <li><strong>Contact:</strong> ${p.contact}</li>
-              <li><strong>Health Status:</strong> ${p.status}</li>
-              <li><strong>Chronic Illness:</strong> ${p.chronic}</li>
-              <li><strong>Pregnant?:</strong> ${p.pregnant}</li>
-              <li><strong>Blood Pressure:</strong> ${p.bp}</li>
-              <li><strong>Sugar Level:</strong> ${p.sugar}</li>
-              <li><strong>BMI:</strong> ${p.bmi}</li>
-              <li><strong>Risk Level:</strong> ${p.risk}</li>
-              <li><strong>Substance Use:</strong> ${p.substance}</li>
-            </ul>
+  <div class="p-3 bg-light rounded">
+    <h5 data-i18n="General Information">General Information</h5>
+    <ul class="list-unstyled mb-3">
+      <li><strong data-i18n="Age">Age:</strong> ${p.age}</li>
+      <li><strong data-i18n="Village">Village:</strong> ${p.village}</li>
+      <li><strong data-i18n="Contact">Contact:</strong> ${p.contact}</li>
+      <li><strong data-i18n="Health Status">Health Status:</strong> ${p.status}</li>
+      <li><strong data-i18n="Chronic Illness">Chronic Illness:</strong> ${p.chronic}</li>
+      <li><strong data-i18n="Pregnant?">Pregnant?</strong> ${p.pregnant}</li>
+      <li><strong data-i18n="Blood Pressure">Blood Pressure:</strong> ${p.bp}</li>
+      <li><strong data-i18n="Sugar Level">Sugar Level:</strong> ${p.sugar}</li>
+      <li><strong data-i18n="BMI">BMI:</strong> ${p.bmi}</li>
+      <li><strong data-i18n="Risk Level">Risk Level:</strong> ${p.risk}</li>
+      <li><strong data-i18n="Substance Use">Substance Use:</strong> ${p.substance}</li>
+    </ul>
 
-            <h5>Past Checkup Records</h5>
-            <p>No detailed past records available currently.</p>
+    <h5 data-i18n="Past Checkup Records">Past Checkup Records</h5>
+    <p data-i18n="No detailed past records available currently.">No detailed past records available currently.</p>
 
-<button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); window.location.href='input.html?name=${encodeURIComponent(p.name)}'">+ Add New Record</button>
-
-          </div>
-        </td>
+    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); window.location.href='input.html?name=${encodeURIComponent(p.name)}'" data-i18n="+ Add New Record">+ Add New Record</button>
+  </div>
+</td>
       `;
 
       tbody.appendChild(trMain);

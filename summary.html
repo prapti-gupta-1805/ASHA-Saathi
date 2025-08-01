@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Health Report Summary</title>
+  <title data-i18n="ai_analysis_summary_title">Health Report Summary</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
   <script src="https://unpkg.com/i18next@21.6.16/i18next.min.js"></script>
-<script src="/lang.js"></script>
+  <script src="/lang.js"></script>
 </head>
 <body class="bg-light">
 
@@ -15,14 +15,17 @@
     <div class="card border-0 shadow-sm">
       <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
         <h5 class="mb-0">
-          <i class="bi bi-cpu text-primary me-2"></i>AI Analysis Summary
+          <i class="bi bi-cpu text-primary me-2"></i>
+          <span data-i18n="ai_analysis_summary">AI Analysis Summary</span>
         </h5>
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-outline-success btn-sm" onclick="saveSummary()">
-            <i class="bi bi-download me-1"></i>Save Report
+            <i class="bi bi-download me-1"></i>
+            <span data-i18n="save_report">Save Report</span>
           </button>
           <button type="button" class="btn btn-outline-primary btn-sm" onclick="addToPatient()">
-            <i class="bi bi-person-plus me-1"></i>Add to Patient
+            <i class="bi bi-person-plus me-1"></i>
+            <span data-i18n="add_to_patient">Add to Patient</span>
           </button>
         </div>
       </div>
@@ -30,41 +33,51 @@
 
         <div class="alert alert-info mb-4">
           <i class="bi bi-info-circle me-2"></i>
-          <strong>Analysis Status:</strong> Processed Successfully
+          <strong data-i18n="analysis_status">Analysis Status:</strong>
+          <span data-i18n="processed_successfully">Processed Successfully</span>
         </div>
 
-        <h6 class="text-primary mb-3">Identified Abnormalities</h6>
+        <h6 class="text-primary mb-3" data-i18n="identified_abnormalities">Identified Abnormalities</h6>
         <ul class="list-group list-group-flush mb-4">
-          <li class="list-group-item">Fever (100°F)</li>
-          <li class="list-group-item">Runny Nose</li>
-          <li class="list-group-item">Mild Cough</li>
+          <li class="list-group-item" data-i18n="fever_100">Fever (100°F)</li>
+          <li class="list-group-item" data-i18n="runny_nose">Runny Nose</li>
+          <li class="list-group-item" data-i18n="mild_cough">Mild Cough</li>
         </ul>
 
-        <h6 class="text-warning mb-3">Warning Signs</h6>
+        <h6 class="text-warning mb-3" data-i18n="warning_signs">Warning Signs</h6>
         <ul class="list-group list-group-flush mb-4">
-          <li class="list-group-item">Monitor temperature daily</li>
-          <li class="list-group-item">Maintain hydration</li>
-          <li class="list-group-item">Seek medical help if symptoms worsen</li>
+          <li class="list-group-item" data-i18n="monitor_temp">Monitor temperature daily</li>
+          <li class="list-group-item" data-i18n="maintain_hydration">Maintain hydration</li>
+          <li class="list-group-item" data-i18n="seek_medical_help">Seek medical help if symptoms worsen</li>
         </ul>
 
-        <h6 class="text-success mb-3">Recommended Actions</h6>
+        <h6 class="text-success mb-3" data-i18n="recommended_actions">Recommended Actions</h6>
         <div class="row g-3">
           <div class="col-md-4">
             <div class="p-3 bg-success-subtle border rounded">
-              <h6><i class="bi bi-heart text-success me-2"></i>Immediate Care</h6>
-              <p class="mb-0 small">Ensure rest and provide symptomatic relief (e.g., paracetamol for fever).</p>
+              <h6>
+                <i class="bi bi-heart text-success me-2"></i>
+                <span data-i18n="immediate_care">Immediate Care</span>
+              </h6>
+              <p class="mb-0 small" data-i18n="immediate_care_desc">Ensure rest and provide symptomatic relief (e.g., paracetamol for fever).</p>
             </div>
           </div>
           <div class="col-md-4">
             <div class="p-3 bg-warning-subtle border rounded">
-              <h6><i class="bi bi-calendar-check text-warning me-2"></i>Follow-up</h6>
-              <p class="mb-0 small">Review again in 2–3 days if symptoms persist.</p>
+              <h6>
+                <i class="bi bi-calendar-check text-warning me-2"></i>
+                <span data-i18n="follow_up">Follow-up</span>
+              </h6>
+              <p class="mb-0 small" data-i18n="follow_up_desc">Review again in 2–3 days if symptoms persist.</p>
             </div>
           </div>
           <div class="col-md-4">
             <div class="p-3 bg-danger-subtle border rounded">
-              <h6><i class="bi bi-hospital text-danger me-2"></i>Referral</h6>
-              <p class="mb-0 small">Refer to PHC if temperature rises above 101°F or new symptoms appear.</p>
+              <h6>
+                <i class="bi bi-hospital text-danger me-2"></i>
+                <span data-i18n="referral">Referral</span>
+              </h6>
+              <p class="mb-0 small" data-i18n="referral_desc">Refer to PHC if temperature rises above 101°F or new symptoms appear.</p>
             </div>
           </div>
         </div>
@@ -74,12 +87,12 @@
   </div>
 
   <!-- Back to Home Button -->
-<div class="container mt-4 mb-5 text-start">
-  <a href="index.html" class="btn btn-secondary shadow-sm rounded-pill">
-    <i class="bi bi-arrow-left me-1"></i>Back to Home
-  </a>
-</div>
-
+  <div class="container mt-4 mb-5 text-start">
+    <a href="index.html" class="btn btn-secondary shadow-sm rounded-pill">
+      <i class="bi bi-arrow-left me-1"></i>
+      <span data-i18n="back_to_home">Back to Home</span>
+    </a>
+  </div>
 
   <!-- html2pdf.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
